@@ -1,0 +1,5 @@
+name,age,systolic_bp,diastolic_bp,temperature,on_antibiotics
+John,70,150,95,101.4,yes
+Tom,77,180,105,102.2,yes
+Carlos,81,160,99,100.9,yes
+Robert,64,145,91,100.5,yes
