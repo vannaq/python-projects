@@ -27,17 +27,23 @@ short_movie_count = len(short_action_movie)
 print(f"The number of short action movies released in 1990s is {short_movie_count}.")
 
 
-#Create an empty array 
-shorts = []
+# While the following section of code works, it is slow and more memory-intensive than vectorized pandas filtering.
+#####
+# Create an empty array 
+# shorts = []
 
-#Iterate through all rows of the dataframe to find those with duration less than 60 and of the music genre 
-for index, row in netflix_df.iterrows():
-    if (row["duration"] < 70 and row["genre"] == "Music"):
-        shorts.append(row)                                  #add row to empty array created in previous step
-print(shorts)
+# #Iterate through all rows of the dataframe to find those with duration less than 60 and of the music genre 
+# for index, row in netflix_df.iterrows():
+#     if (row["duration"] < 70 and row["genre"] == "Music"):
+#         shorts.append(row)                                  #add row to empty array created in previous step
+# print(shorts)
 
 #Convert series back into a dataframe
-shorts_df = pd.DataFrame(shorts)
+# shorts_df = pd.DataFrame(shorts)
+######
+
+#Boolean indexing to replace the above section of code is much faster & cleaner
+shorts_df = netflix_df[(netflix_df["duration"] < 70) & (netflix_df["genre"] == "Music")]
 
 #Export to csv and save to location 
 shorts_df.to_csv('datacamp/basic_projects/netflix_movies_analysis/shorts.csv', index=False)
