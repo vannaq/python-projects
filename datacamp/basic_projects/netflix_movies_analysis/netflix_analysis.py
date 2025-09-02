@@ -22,9 +22,26 @@ print(f"The most frequent movie duration in the 1990s was {duration} minutes.")
 #Filter for short action movie genre, which is less than 90 minutes long
 short_action_movie = movies_1990s[(movies_1990s["duration"] < 90) & (movies_1990s["genre"] == "Action")]
 
-
+#Using len function, we can find the number of items in the filtered series from the previous step
 short_movie_count = len(short_action_movie)
 print(f"The number of short action movies released in 1990s is {short_movie_count}.")
+
+
+#Create an empty array 
+shorts = []
+
+#Iterate through all rows of the dataframe to find those with duration less than 60 and of the music genre 
+for index, row in netflix_df.iterrows():
+    if (row["duration"] < 70 and row["genre"] == "Music"):
+        shorts.append(row)                                  #add row to empty array created in previous step
+print(shorts)
+
+#Convert series back into a dataframe
+shorts_df = pd.DataFrame(shorts)
+
+#Export to csv and save to location 
+shorts_df.to_csv('datacamp/basic_projects/netflix_movies_analysis/shorts.csv', index=False)
+
  
 
 
