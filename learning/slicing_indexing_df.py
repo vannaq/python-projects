@@ -14,9 +14,11 @@
 #to slice inner index levels correctly, pass the first and last positions as tuples: df.loc[("col1_row1", "col2_row1"):("col1_row4", "col2_row4")]
 #since dataframes are 2D objects, can also slice columns: df.loc[:, "column_name1":"column_name2"]
 #capable of slicing twice: df.loc[("col1_row1", "col2_row1"):("col1_row4", "col2_row4"), "column_name3":"column_name4"]
+#df.loc["row1":"row3", "column1":"column3"] means selecting "row1" through "row3" and "column1" through "column3"
 
 
 #an important use of slicing is to subset dataframes by a range of dates: df.set_index("date_of_birth").sort_index()
 #slice dates with same syntax as other types: df.loc["yyyy-mm-dd":"yyyy-mm-dd"]
 #slice by partial dates: df.loc["yyyy":"yyyy"]
 #subset by row/column number: df.iloc[2:5, 1:4]
+#when selecting consecutive elements using start:end syntax, start is included but end is excluded (for dataframe, this requires sorted indexes)
