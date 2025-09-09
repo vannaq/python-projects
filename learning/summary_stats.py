@@ -14,6 +14,13 @@
 #do not use quotation marks around user-defined custom functions *reference pct30 above*
 #example: df[["column1", "column2"]].agg([iqr, "median"])
 
+#general form of passing a dictionary into .agg() to specify which columns to aggregate: what functions to apply to each:
+#df.groupby(...).agg({
+#    "column_name_1": "aggregation_function_1",
+#   "column_name_2": "aggregation_function_2",
+#})
+
+
 #cumulative stats: .cumsum(), .cummax(), .cummin(), .cumprod()
 #example: df["column_name_to_add"] = df["existing_column"].cumsum()
 
