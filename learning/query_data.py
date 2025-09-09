@@ -1,0 +1,2 @@
+#.query('some selection statement') accepts an input string that it will use to select rows to return from the table
+#use .query() to select text: df.query('criteria=="string" or (criteria=="string2" and criteria2 < 90)')
