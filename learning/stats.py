@@ -32,6 +32,3 @@
 #sampling with replacement, set the replace argument to True: df.sample(seed, replace=True)
 #to get counts: df.value_counts()
 
-#Discrete distributions#
-#discrete uniform distribution is when all outcomes have the same probability, like a fair die
-#law of large numbers: as the size of sample increases, sample mean will approach theoretical mean
