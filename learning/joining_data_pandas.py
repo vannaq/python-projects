@@ -28,3 +28,41 @@
 #multiIndex datasets: df.read_csv('name.csv', index_col=['left_ID', 'right_id'])
 #multiIndex merge: df.merge(df2, on=['column1','column2'])
 #index merge with left_on and right_on: df_new = df_left.merge(df_right, left_on="column_name", left_index=True, right_on="column_name2", right_index=True)
+
+
+
+import pandas as pd
+
+patients = pd.DataFrame({
+    "patient_id": [1, 2, 3, 4],
+    "name": ["Alice", "Bob", "Charlie", "Diana"]
+})
+
+visits = pd.DataFrame({
+    "visit_id": [101, 102, 103, 104],
+    "id": [1, 2, 2, 5],             #notice value (5) doesn't exist in patients
+    "date": ["2025-09-01", "2025-09-03", "2025-09-04", "2025-09-05"]
+})
+
+
+#merge patients and visits so each visit shows the patient's name
+patient_visit_patient_name = pd.merge(patients, visits, left_on="patient_id", right_on="id")
+print(patient_visit_patient_name)
+
+#merge patients and visits so all visits show up, even if patient ID doesn't exist in patient table
+patient_visit_all_visits = pd.merge(patients, visits, left_on="patient_id", right_on="id", how="right")
+print(patient_visit_all_visits)
+
+#merge patients and visits so all patients show up even if they never had a visit
+patient_visit_all_ID = pd.merge(patients, visits, left_on="patient_id", right_on="id", how="left")
+print(patient_visit_all_ID)
+
+#merge to keep both key columns but avoid ..._x/..._y noise using suffixes=
+suffix_patient_visit = pd.merge(patients, visits, left_on="patient_id", right_on="id", how="inner", suffixes=('_pat', '_vis'))[["visit_id", "patient_id", "id", "name", "date"]]
+print(suffix_patient_visit)
+
+#keep all visits and show who's missing
+mis_patient_visit = pd.merge(patients, visits, left_on="patient_id", right_on="id", how="right")
+mis_patient_visit["missing_patient"] = mis_patient_visit["patient_id"].isna()
+print(mis_patient_visit)
+
