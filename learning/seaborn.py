@@ -41,3 +41,30 @@
 #bar plots display mean of quantitative variable per category: sns.catplot(x="x_axis", y="y_axis", data=dataname, kind="bar")
 #seaborn automatically shows 95% confidence intervals for mean so assuming data is a random sample, we're 95% sure the true population mean in each group lies within the confidence interval shown. To no longer display confidence interval: ci=None
 #to change orientation of bar plot, swap x and y axis: sns.catplot(y="previous_x_axis_name", data=dataname, kind="bar")
+
+
+#box plots show the distribution of quantitative data (median, spread, skewness, and outliers) and facilitates comparison between different groups: sns.catplot(x="x_axis", y="y_axis", data=datasetname, kind="box")
+#use order parameter to change order of groups displayed
+#use the sym paramter to omit outliers: sns.catplot(x="x_axis", y="y_axis", data=datasetname, kind="box", sym="")
+#by default, whiskers extend to 1.5*IQR. Change whiskers using whis parameter: whis=2.0   OR to show the 5th and 95th percentile: whis=[5, 95] where the list is [min_value, max_value]
+
+#point plots show the mean of a quantitative variable for the observations in each category, plotted as a single point. It's a categorical plot b/c one axis, usually the x-axis, is a categorical variable whereas a line plot will have quantitative variables for both x and y axes
+#use kind parameter to set plot as point plot: kind="point"
+#to remove lines connecting the points: join=False
+#to have points and confidence intervals calculated for median instead of mean, import median function from numpy library and set estimator equal to numpy median: estimator=median  ---this may be a better stat to use if dataset has a lot of outliers
+#to add caps to the end of confidence intervals, set capsize parameter equal to desired width of caps: capsize=0.2 
+
+#changing global figure style for all plots:sns.set_style()  where preset options include "white", "dark", "whitegrid", "darkgrid", "ticks"
+#changing figure "palette" changes color of the main elements of the plot: sns.set_palette()  ---use preset palettes or create a custom palette
+#changing figure "context" changes the scale of the plot elements and labels: sns.set_context()   ---smallest to largest: "paper", "notebook", "talk", "poster"
+
+#Seaborn's plot functions create 2 different types of objects: FacetGrids and AxesSubplots. assign plot output to a variable and run "type(g)" to see its object type.
+#An empty FacetGrid consists of one or more AxesSubplots, which is how it supports subplots
+#to assign a title for the figure as a whole: g.fig.suptitle("New Title")
+#to adjust height of title, use y parameter: g.fig.suptitle("New Title", y=1.03)  ---note the default value is 1 so 1.03 will make it a little higher
+
+#to add title to AxesSubplot: g.set_title("New Title", y=1.03)
+#to add titles for subplots: g.set_titles("This is {col_name}") after setting col parameter to "col_name_variable"
+#to add axis labels, assign plot to a variable and call "set" function: g.set(xlabel="New X Label", ylabel="New Y Label")
+
+#to rotate x-axis tick labels, use matplotlib function: plt.xticks(rotation=90)
